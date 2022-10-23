@@ -4,6 +4,10 @@ import Signin from './pages/Signin';
 import UpdateAddress from './pages/UpdateAddress';
 import UpdateBank from './pages/Update-Bank';
 import Otp from './pages/Otp';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Withdraw from './pages/Withdraw';
+import ExchangePlastic from './pages/Exchange-Plastic';
 
 function App() {
   return (
@@ -13,6 +17,10 @@ function App() {
         <Route path='/update-address' element={<UpdateAddress />} />
         <Route path='/update-bank' element={<UpdateBank />} />
         <Route path='/otp' element={<Otp />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/exchange' element={<ExchangePlastic />} />
+        <Route path='/withdraw' element={<Withdraw />} />
       </Routes>
     </BrowserRouter>
   );

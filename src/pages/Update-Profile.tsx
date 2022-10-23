@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import HeaderText from "../components/Header-Text";
+import HeaderText from "../components/Header"
 import Appbar from "../components/Appbar";
 import Input from "../components/Input";
 import Button from "../components/Button";

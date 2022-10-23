@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import Appbar from "../components/Appbar";
 import Button from "../components/Button";
-import HeaderText from "../components/Header-Text";
+import HeaderText from "../components/Header";
 import Input from "../components/Input";
 
 const UpdateAddress: FC = () => {

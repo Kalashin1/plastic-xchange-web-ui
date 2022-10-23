@@ -4,42 +4,46 @@ import HeaderText from "../components/Header"
 import Appbar from "../components/Appbar";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import FooterNav from "../components/Footer-Nav";
 
-const UpdateBank: FC = () => {
-  const [bank, setBank] = useState('')
-  const [account, setAccount] = useState('');
+const ExchangePlastic: FC = () => {
+  const [weight, setWeight] = useState('');
+  const [type, setType] = useState('')
+
 
   return (
     <section>
       <Appbar />
       <div className="flex justify-center h-screen items-center flex-col">
-        <HeaderText text="Update Your WIthdrawal Info" />
+        <HeaderText text="Exchange Plastic" />
         <form className="border-red-500 w-full md:w-2/4 px-6">
 
           <Input
-            label="Bank"
-            defaultV={bank}
-            updateV={setBank}
-            placeHolder="UBA"
+            label="Select Plastic Type"
+            defaultV={type}
+            updateV={setType}
+            placeHolder="Type"
             type="text"
           />
 
-          <Input 
-            label="Account Number"
-            defaultV={account}
-            updateV={setAccount}
-            placeHolder="0812346728"
+          <Input
+            label="Weight"
+            defaultV={weight}
+            updateV={setWeight}
+            placeHolder="300kg"
             type="text"
           />
+
 
           <div className="flex justify-center my-8">
-            <Button label="Update Withdrawal Info " />
+            <Button label="Exchange Plastic" />
           </div>
 
         </form>
       </div>
+      <FooterNav />
     </section>
   )
 };
 
-export default UpdateBank
+export default ExchangePlastic;
