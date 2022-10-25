@@ -1,23 +1,58 @@
 import { FC } from 'react';
+import { formatDate, formatter } from '../helper';
+import { useNavigate } from 'react-router-dom';
 
-const TransactionComponent:FC = () => {
+type Props = {
+  type: string;
+  amount: number;
+  _id: string;
+  transId: string
+  weight: number;
+  date: string;
+  status: string;
+  userType: string;
+}
+
+const TransactionComponent: FC<Props> = ({
+  type,
+  amount,
+  weight,
+  date,
+  transId,
+  status,
+  _id,
+  userType
+}) => {
+
+  const navigate = useNavigate();
+
   return (
-    <div className="p rounded-md border md:w-full">
-      <div className="p-4 rounded bg-green-800 text-white hover:bg-white hover:text-green-800">
+    <div 
+      className="p rounded-md border md:w-full my-4"
+    >
+      <div className="p-4 rounded bg-white text-green-800 hover:bg-green-50 hover:text-green-900">
         <div className="flex justify-between">
-          <p>PPE</p>
-          <p>$20</p>
-          <p 
+          <span>{type}</span>
+          <span>{formatter.format(amount)}</span>
+          <span
             className="text-sm"
           >
-            <span><i className='fas fa-edit mr-2' /></span>
-            <span><i className='fas fa-user-alt' /></span>
-          </p>
+            {userType === "AGENT" &&
+              (<span 
+                onClick={e => navigate(`/edit-exchnage/${transId}/`)}
+                className='text-sm cursor-pointer'
+              ><i className='fas fa-edit mr-2' /></span>)
+            }
+            <span 
+              className='text-sm cursor-pointer'
+              onClick={e => navigate(`/view-profile/${_id}/`)}
+            ><i className='fas fa-user-alt' /></span>
+          </span>
         </div>
         <div className="flex justify-between">
-          <p>30kg</p>
-          <p>2/11/22</p>
-          <p>PENDING</p>
+          <span>{new Intl.NumberFormat().format(weight)}kg</span>
+          <span>{formatDate(date)}</span>
+          <span>{status}</span>
         </div>
       </div>
     </div>

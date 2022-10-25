@@ -23,7 +23,7 @@ const ProfileCard: FC<Props> = ({
         <CardText
           text="Name"
         />
-        <CardNum num={`Kinanee`} />
+        <CardNum num={name} />
       </div>
 
       <div
@@ -32,7 +32,7 @@ const ProfileCard: FC<Props> = ({
         <CardText
           text='Username'
         />
-        <CardNum num={`kalashin`} />
+        <CardNum num={username} />
       </div>
       <div
          className='mb-4 flex justify-between'
@@ -40,7 +40,7 @@ const ProfileCard: FC<Props> = ({
         <CardText
           text='Email'
         />
-        <CardNum num={`kinaneesamsonjohn@gmail.com`} />
+        <CardNum num={email.slice(0, 20)} />
       </div>
 
       <div
@@ -49,7 +49,7 @@ const ProfileCard: FC<Props> = ({
         <CardText
           text='Phone Number'
         />
-        <CardNum num={`+2348149793913`} />
+        <CardNum num={phoneNumber} />
       </div>
     </div>
   )
@@ -59,12 +59,12 @@ export default ProfileCard;
 
 const CardText: FC<{ text: string }> = ({ text }) => {
   return (
-    <h5 className="font-bold text-lg mb">{text}</h5>
+    <h5 className="font-bold text-sm mb">{text}</h5>
   )
 }
 
 const CardNum: FC<{ num: string }> = ({ num }) => {
   return (
-    <h5 className="font-bold text-sm">{num}</h5>
+    <h5 className="font-bold text-xs">{num}</h5>
   )
 }

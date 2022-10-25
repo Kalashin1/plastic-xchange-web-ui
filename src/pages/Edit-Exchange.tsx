@@ -4,60 +4,58 @@ import HeaderText from "../components/Header"
 import Appbar from "../components/Appbar";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import FooterNav from "../components/Footer-Nav";
 import Select from "../components/Select";
-import { getPlastics, getAgentUsers, createPlasticExchange, getUser } from "../helper";
-import { PlasticTypeInterface, UserInterface } from "../types";
-import { useNavigate } from "react-router";
+import { getPlastics, getUser, getPlastic, editPlasticExchange } from "../helper";
+import { PlasticTypeInterface } from "../types";
+import { useNavigate, useParams } from "react-router";
 
-const ExchangePlastic: FC = () => {
+const EditExchangePlastic: FC = () => {
+  const { id } = useParams();
+
   const navigate = useNavigate()
   const [weight, setWeight] = useState('');
   const [type, setType] = useState('');
+  
+  const [, setExchange] = useState();
+
   const [plastics, setPlastics] = useState<PlasticTypeInterface[]>([]);
-  const [agentUser, setAgentUsers] = useState<UserInterface[]>([]);
-  const [user, setUser] = useState('');
 
   useEffect(() => {
-    const getPlasticTypes = async () => {
+    const getPlasticTypes = async (id: string) => {
       const userToken = localStorage.getItem('userToken')!;
-      const userId = localStorage.getItem('userId')!;
       const [_plast, err] = await getPlastics(userToken);
       const [agent, ] = await getUser(userToken);
+
       if(agent.type === "USER"){
         alert('User cannot exchange plastic')
-        navigate('Profile')
+        navigate('/Profile')
       }
+
       if (!err) {
-        const [_res, _err] = await getAgentUsers(userToken, userId);
-        if (!_err) {
-          console.log(_res)
-          setAgentUsers(_res);
-          setUser(_res[0]._id!)
-        } else {
-          console.log(_err)
+        const [_exchange, excErr] = await getPlastic(userToken, id)
+        if (!excErr) {
+          setExchange(_exchange.plastic)
         }
         setPlastics(_plast);
         setType(_plast[0].type)
       }
     }
 
-    getPlasticTypes()
-  }, [])
+    getPlasticTypes(id!)
+  }, [id])
 
-  const createXchange = async (e: FormEvent) => {
+  const editXchange = async (e: FormEvent) => {
     e.preventDefault();
     const token = localStorage.getItem('userToken')!
-    const [ data, err ] = await createPlasticExchange({
-      agent: localStorage.getItem('userId')!,
-      customer: user,
+    const [ data, err ] = await editPlasticExchange({
+      _id: id,
       type,
       weight: parseInt(weight),
     }, token)
 
     if (!err) {
       console.log(data)
-      alert('Exchage logged!')
+      alert('Exchage Edited!')
       navigate('/dashboard');
     }
   }
@@ -70,7 +68,7 @@ const ExchangePlastic: FC = () => {
         <HeaderText text="Exchange Plastic" />
         <form 
           className="border-red-500 w-full md:w-2/4 px-6"
-          onSubmit={createXchange}
+          onSubmit={editXchange}
         >
 
           <Select
@@ -88,23 +86,15 @@ const ExchangePlastic: FC = () => {
             type="text"
           />
 
-          <Select
-            data={agentUser.map((p) => ({ label: p.username, value: p._id! }))}
-            defaultV={user}
-            updateV={setUser}
-            label="Select Plastic"
-          />
-
-
           <div className="flex justify-center my-8">
             <Button label="Exchange Plastic" />
           </div>
 
         </form>
       </div>
-      <FooterNav />
+      {/* <FooterNav /> */}
     </section>
   )
 };
 
-export default ExchangePlastic;
+export default EditExchangePlastic;

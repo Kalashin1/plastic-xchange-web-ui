@@ -1,7 +1,13 @@
 import { FC } from 'react';
+import { formatter } from '../helper';
 
 
-const Card: FC = () => {
+type Props = {
+  weight: number
+  balance: number 
+}
+
+const Card: FC<Props> = ({ weight, balance }) => {
   return (
     <div
       className="flex rounded-lg flex-col p-6 mt-8 hover:bg-green-50 hover:text-green-800 bg-green-800 text-green-50"
@@ -13,14 +19,14 @@ const Card: FC = () => {
         <CardText
           text='Total Plastic Collected'
         />
-        <CardNum num={`${300}kg`} />
+        <CardNum num={`${new Intl.NumberFormat().format(weight)}kg`} />
       </div>
 
       <div>
         <CardText
           text='Balance'
         />
-        <CardNum num={`$${300}`} />
+        <CardNum num={`${formatter.format(balance)}`} />
       </div>
     </div>
   )

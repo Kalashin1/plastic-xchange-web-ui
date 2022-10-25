@@ -1,20 +1,44 @@
-import { FC, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 
 import HeaderText from "../components/Header"
 import Appbar from "../components/Appbar";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { UpdateProfile as updateProfile } from "../helper";
+import { useNavigate } from "react-router";
 
-const UpdateBank: FC = () => {
+const UpdateProfile: FC = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  const update = async (e: FormEvent) => {
+    e.preventDefault()
+    const token = localStorage.getItem('userToken')!;
+    const id = localStorage.getItem('userId')!;
+    const [message, err] = await updateProfile(
+      token,
+      id,
+      { name, phoneNumber }
+    )
+
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(message)
+      navigate('/profile')
+    }
+  } 
 
   return (
     <section>
       <Appbar />
       <div className="flex justify-center h-screen items-center flex-col">
         <HeaderText text="Update Your Profile" />
-        <form className="border-red-500 w-full md:w-2/4 px-6">
+        <form 
+          className="border-red-500 w-full md:w-2/4 px-6"
+          onSubmit={update}
+        >
 
           <Input
             label="Name"
@@ -42,4 +66,4 @@ const UpdateBank: FC = () => {
   )
 };
 
-export default UpdateBank
+export default UpdateProfile;

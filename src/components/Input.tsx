@@ -24,14 +24,14 @@ const Input: FC<Props> = ({
       >
       <label className="my-2 text-sm">{label}</label>
       <input 
-        className="border focus:bg-white bg-green-400 border-green-900 rounded-md py-2 px-8"
+        className={`border focus:bg-white bg-green-400 ${showError ? 'border-red-600': 'border-green-900' } rounded-md py-2 px-8`}
         type={type}
         placeholder={placeHolder}
         value={defaultV}
         onChange={e => updateV(e.target.value)}
       />
       { showError ? 
-        (<small>{errorMessage}</small>):
+        (<small className="text-red-500">{errorMessage}</small>):
         <></>
       }
     </div>

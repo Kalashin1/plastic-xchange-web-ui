@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "foodkal-01"
+  },
+  "targets": {
+    "foodkal-01": {
+      "hosting": {
+        "xchange-ui": [
+          "xchange-ui"
+        ]
+      }
+    }
+  }
+}
