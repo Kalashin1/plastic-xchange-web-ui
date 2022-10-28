@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   state: string;
@@ -13,9 +14,11 @@ const AddressCard: FC<Props> = ({
   zip,
   street
 }) => {
+  const navigate = useNavigate();
   return (
     <div
       className="flex rounded-lg flex-col p-6 mt-8 hover:bg-green-50 hover:text-green-800 bg-green-800 text-green-50"
+      onClick={e => navigate('/update-address')}
     >
       <div
         className='mb-4 flex justify-between'
