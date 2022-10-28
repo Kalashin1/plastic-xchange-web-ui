@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import { CreateAccount } from "../helper";
 import { useNavigate } from "react-router";
 
-const Signin: FC = () => {
+const AgentSignin: FC = () => {
   const [username, setUsername] = useState('')
   const [showUsernameError, setUsernameError] = useState(false)
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ const Signin: FC = () => {
     const [data, err] = await CreateAccount({
       username,
       email,
-      type: 'USER'
+      type: 'AGENT'
     })
 
     if (err) {
@@ -73,10 +73,10 @@ const Signin: FC = () => {
           </div>
         </form>
 
-          <p className="cursor-pointer" onClick={e => navigate('/agent-signin')}>I am an agent.</p>
+        <p className="cursor-pointer" onClick={e => {navigate('/')}}>I am an user.</p>
       </div>
     </section>
   )
 };
 
-export default Signin
+export default AgentSignin

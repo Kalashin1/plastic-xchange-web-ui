@@ -11,12 +11,14 @@ import Withdraw from './pages/Withdraw';
 import ExchangePlastic from './pages/Exchange-Plastic';
 import ViewProfile from './pages/ViewProfile';
 import EditExchangePlastic from './pages/Edit-Exchange';
+import AgentSignin from './pages/Agent-Signin';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<Signin />} />
+        <Route path='/agent-signin' element={<AgentSignin />} />
         <Route path='/update-address' element={<UpdateAddress />} />
         <Route path='/update-bank' element={<UpdateBank />} />
         <Route path='/update-profile' element={<UpdateProfile />} />

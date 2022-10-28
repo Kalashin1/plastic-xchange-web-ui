@@ -92,7 +92,7 @@ const ExchangePlastic: FC = () => {
             data={agentUser.map((p) => ({ label: p.username, value: p._id! }))}
             defaultV={user}
             updateV={setUser}
-            label="Select Plastic"
+            label="Select HouseHold"
           />
 
 
