@@ -70,7 +70,7 @@ const UpdateAddress: FC = () => {
           />
 
           <Input
-            label="Zip"
+            label="Postal Code"
             defaultV={zip}
             updateV={setZip}
             placeHolder="500102"

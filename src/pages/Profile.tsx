@@ -42,28 +42,23 @@ const Profile: FC = () => {
         >
           <div onClick={e => navigate('/update-profile')}>
             <ProfileCard
-              name={user?.name ? user.name: ''}
+              name={user?.name ? user.name : ''}
               email={user?.email ? user.email : ''}
               username={user?.username ? user.username : ''}
-              phoneNumber={user?.phoneNumber ? user.phoneNumber: ''}
+              phoneNumber={user?.phoneNumber ? user.phoneNumber : ''}
             />
           </div>
 
 
-          {
-            user?.bankInfo && 
-            (
-              <div onClick={e => navigate('/update-bank')}>
-                <BankCard 
-                  account={user?.bankInfo?.accountNumber?.toString()}
-                  bank={ user?.bankInfo?.bank}
-                />
-              </div>
-              )
-          }
+          <div onClick={e => navigate('/update-bank')}>
+            <BankCard
+              account={user?.bankInfo?.accountNumber?.toString()}
+              bank={user?.bankInfo?.bank}
+            />
+          </div>
 
           <div onClick={e => navigate('/update-address')}>
-            <AddressCard 
+            <AddressCard
               lga={user?.location?.lga}
               street={user?.location?.street.slice(0, 20)}
               zip={user?.location?.zip}
@@ -73,7 +68,7 @@ const Profile: FC = () => {
         </div>
       </div>
       <FooterNav />
-      </section>
+    </section>
   )
 };
 

@@ -26,7 +26,7 @@ const Dashboard: FC = () => {
         if (!excErr) {
           // console.log(_exchanges[0])
           setXchanges(_exchanges)
-          if ( _exchanges.length > 1 ) {
+          if ( _exchanges.length > 0 ) {
             const weight = _exchanges.map(e => e.weight).reduce((prev, current) => prev + current);
             setWeight(weight)
           }

@@ -56,7 +56,7 @@ const Otp: FC = () => {
             label="OTP"
             defaultV={otp}
             updateV={setOTP}
-            placeHolder="UBA"
+            placeHolder="000000"
             type="text"
             errorMessage="Incorrect OTP"
             showError={optError}
