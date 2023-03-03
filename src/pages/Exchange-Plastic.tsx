@@ -23,6 +23,7 @@ const ExchangePlastic: FC = () => {
       const userToken = localStorage.getItem('userToken')!;
       const userId = localStorage.getItem('userId')!;
       const [_plast, err] = await getPlastics(userToken);
+      // console.log(_plast);
       const [agent, ] = await getUser(userToken);
       if(agent.type === "USER"){
         alert('User cannot exchange plastic')
@@ -32,13 +33,13 @@ const ExchangePlastic: FC = () => {
         const [_res, _err] = await getAgentUsers(userToken, userId);
         if (!_err) {
           console.log(_res)
-          setAgentUsers(_res);
-          setUser(_res[0]._id!)
+          setAgentUsers(_res ?? []);
+          _res[0]?._id ? setUser(_res[0]._id!): alert('You have not been assigned a house hold yet!');
         } else {
           console.log(_err)
         }
         setPlastics(_plast);
-        setType(_plast[0].type)
+        _plast[0]?.type ? setType(_plast[0].type): alert('no plastic created')
       }
     }
 

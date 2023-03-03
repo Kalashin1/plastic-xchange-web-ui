@@ -34,15 +34,15 @@ const AgentSignin: FC = () => {
       localStorage.setItem('userId', user._id);
       localStorage.setItem('username', user.username)
       // console.log(user)
-      alert('Account created successfully, verify otp')
+      alert('Account created successfully, complete details')
       if (!user.location) {
         navigate('/update-address')
       } else if (!user.bankInfo) {
-        navigate('/update-bank')
+        navigate('/update-bank');
       } else if (!user.name) {
-        navigate('/update-profile')
+        navigate('/update-profile');
       } else {
-        navigate('/dashboard')
+        navigate('/dashboard');
       }
     }
   }
